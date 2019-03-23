@@ -1,0 +1,9 @@
+Ext.onReady（）方法将在Ext JS准备好渲染Ext JS元素时调用
+Ext.create（）方法用于在Ext JS中创建对象，这里我们创建一个简单的面板类Ext.Panel的对象
+Ext.Panel是Ext JS中用于创建面板的预定义类
+	Ext.Panel类有以下各种属性:
+		renderTo 是此面板必须呈现的元素。 \'helloWorldPanel\'是Index.html文件中的div id。
+		Height 和宽度属性用于提供面板的自定义尺寸。
+		Title 属性是为面板提供标题。
+		Html 属性是要在面板中显示的html内
+Ext.define（）用于在Ext JS中定义类

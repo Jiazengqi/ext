@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="https://cdn.bootcss.com/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel="stylesheet">
+      	<script type="text/javascript" src="js/ext-3.2/adapter/ext/ext-base.js" ></script>
+      	<script src="https://cdn.bootcss.com/extjs/6.0.0/ext-all.js"></script>
+	</head>
+	<body>
+		<div id="gridDiv"></div>
+		<script>
+			// Creation of data model
+			Ext.define('StudentDateModel',{
+				extend:'Ext.data.Model',
+				fields:[
+				{name:'name',mapping:'NAME'},
+				{name: 'age', mapping : 'AGE'},
+         		{name: 'marks', mapping : 'MARKS'}
+				]
+			});
+			
+			Ext.create(function(){
+				// Store data
+		         var myData = [
+		            { name : "Asha", age : "16", marks : "90" },
+		            { name : "Vinit", age : "18", marks : "95" },
+		            { name : "Anand", age : "20", marks : "68" },
+		            { name : "Niharika", age : "21", marks : "86" },
+		            { name : "Manali", age : "22", marks : "57" }
+		         ];
+		          // Creation of first grid store
+		          var gridStore=Ext.create('Ext.data.Store',{
+		          	model:'StudentDateModel',
+		          	data:myData
+		          });
+		     
+				
+				 // Creation of first grid
+				 Ext.create('Ext.grid.Panel',{
+				 	id                : 'gridId',
+		            store             : gridStore,
+		            stripeRows        : true,
+		            title             : 'Students Grid', 
+		            
+		            renderTo          :'gridDiv', // Div id where the grid has to be rendered
+		            width             : 600,
+		            collapsible       : true, //折叠
+		            enableColumnMove  :true, // 属性，该属性通过拖动列将列移动到不同的位置.
+		            enableColumnResize:true, // 属性，该属性允许调整列运行时的大小.
+		            columns		:[
+		            {
+		            	header:"Student Nanme",
+		            	dataIndex:'name',
+		            	id:'name',
+		            	flex:1,
+		            	sortable :true,//网格添加排序功能
+		            	hideable:true
+		            },{
+		            	header:"age",
+		            	dataIndex:'age',
+		            	flex:.5,
+		            	sortable:true,
+		            	hideable:false
+		            },{
+		            	header:"Marks",
+		            	dataIndex:'marks',
+		            	flex:.5,
+		            	sortable:true,
+		            	renderer:function(value,metadata,store){
+		            		if(value>75){
+		            			return "Distinction";
+		            		}else{
+		            			return "Non Distinction";
+		            		}
+		            	}
+		            	
+		            }
+		            ]
+				 });
+			});
+			
+		</script>
+	</body>
+</html>

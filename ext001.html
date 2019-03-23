@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   	<meta charset="utf-8">
+      <link href="https://cdn.bootcss.com/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel="stylesheet">
+      <script type="text/javascript" src="js/ext-3.2/adapter/ext/ext-base.js" ></script>
+      <script src="https://cdn.bootcss.com/extjs/6.0.0/ext-all.js"></script>
+      <script type="text/javascript">
+      	
+         Ext.onReady(function() {
+         Ext.create('Ext.Panel', {
+            renderTo: 'helloWorldPanel',
+            height: 300,
+            width: 400,
+            title: 'Hello world',
+            html: 'First Ext JS Hello World Program'
+            });
+           
+         });
+         
+         Ext.onReady(function(){
+         		Ext.MessageBox.alert('标题', 'Hello World!');
+         });
+         Ext.onReady(function(){
+         	var component1 =Ext.create('Ext.Component',{
+         		html:'first Component'
+         	});
+         	
+         	var component2= Ext.create('Ext.Component',{
+         		html:'Secend Component'
+         	});
+         	
+         	var component3= Ext.create('Ext.Component',{
+         		html:'Third Component'
+         	});
+         	var component4= Ext.create('Ext.Component',{
+         		html:'Four Component'
+         	});
+         	var component=Ext.create('Ext.container.Container',{
+         		style:{borderStyle:'solid',borderWidth:'5px'},
+         		width:'50%',
+         		items:[component3,component4]
+         	})
+         	
+         	Ext.create('Ext.container.Container',{
+         		renderTo:Ext.getBody(),
+         		title:'Container',
+         		border:1,
+         		width:'50%',
+         		style:{borderStyle:'solid',borderWidth:'2px'},
+         		items:[component1,component2,component]
+         	});
+         });
+      //  panerl容器
+        Ext.onReady(function(){
+        	 
+         var panel1=Ext.create('Ext.Panel',{
+         	html:'First Panel'
+         });
+         var panel2=Ext.create('Ext.Panel',{
+         	html:'Secend Panel'
+         });
+         
+         Ext.create('Ext.panel.Panel',{
+         	renderTo:Ext.getBody(), 	
+         	width:100,
+         	height:100,
+         	border:true,
+         	frame:true,
+         	items:[panel1,panel2]
+         });
+        });
+        
+        //form 容器
+        Ext.onReady(function(){
+        	  var child1 = Ext.create('Ext.Panel',{     
+            html: 'Text field' 
+         });
+        
+         var child2 = Ext.create('Ext.Panel',{
+            html: 'Text field' 
+         });
+         
+         Ext.create('Ext.form.Panel',{
+         	renderTo:Ext.getBody(),
+         	width: 100,
+            height : 100,
+            border : true,
+            frame : true,
+            layout: 'auto',// auto is one of the layout type.
+            items: [child1, child2]
+         });
+        	
+        });
+        //tab容器
+        Ext.onReady(function () {
+        Ext.create('Ext.tab.Panel',{
+        	renderTo:Ext.getBody(),
+        	height:100,
+        	width:200,
+        	enableTabScroll:true,
+        	items:[{
+        		xtype:'panel',
+        		title:'Tab One',
+        		html:'the first Tab',
+        		listeners:{
+        			render:function(){
+        				Ext.MessageBox.alert('Tab One','Tab One Was clicked.');
+        			}
+        		},
+        		items:[{xtype:'button',text:'按钮'}],
+        		closable:true
+        	},{
+        		 // xtype for all Component configurations in a Container
+        		 title:'Tab Two',
+        		 html:'the secend tab',
+        		 listeners:{
+        		 	render:function(){
+        		 		Ext.MessageBox.alert('Tab Two','Tab Two was clicked.');
+        		 	}
+        		 }
+        	}]
+        	
+        });
+      });
+        
+        //显示一个Ext.container.Viewport容器
+        Ext.onReady(function () {
+         var childPanel1 = Ext.create('Ext.panel.Panel', {
+             title: 'Child Panel 1',
+             html: 'A Panel'
+         });
+
+         var childPanel2 = Ext.create('Ext.panel.Panel', {
+             title: 'Child Panel 2',
+             html: 'Another Panel'
+         });
+
+         Ext.create('Ext.container.Viewport', {
+         renderTo: Ext.getBody(),
+             items: [ childPanel1, childPanel2 ]
+         });
+      });
+      //操作选项卡
+      Ext.onReady(function(){
+ 
+            //1.基本的选项卡
+            var tabs1 = Ext.createWidget('tabpanel', {//createWidget使用别名来创建对象
+                renderTo: "tabPanel",
+                activeTab: 0,                       //指定默认的活动tab(后面的数字相当于下标)
+                width: 600,
+                height: 120,
+                plain: true,                        //True表示tab候选栏上没有背景图片（默认为false）
+                enableTabScroll: true,              //选项卡过多时，允许滚动
+                defaults: { autoScroll: true },     //defaults：设置所有的子组件； autoScroll：超出出现滚动条
+                items: [{
+                    id: "tab1",
+                    title: '普通Tab',
+                    html: "这只是一个非常普通的Tab。",
+                    items: [{ xtype: 'button', text: '按钮'}],
+                    closable: true                  //这个tab可以被关闭
+                }, {
+                    id: "tab2",
+                    title: '内容来至div',
+                    contentEl: 'oneTab'             //指定了当前tab正文部分从哪个html元素读取
+                }, {
+                    id: "tab3",
+                    title: 'Ajax Tab',
+                    autoLoad: { url: 'AjaxTabContent', params: { data: "从客户端传入的参数" }, method: 'GET' }
+                }, {
+                    id: "tab4",
+                    title: '事件Tab',
+                    listeners: { activate: handleActivate },
+                    html: "带事件的Tab。"
+                }, {
+                    id: "tab5",
+                    title: '不可用Tab',
+                    disabled: true,
+                    html: "不可用的Tab，你是看不到我的。"
+                }]
+            });
+            //单击tab4后触发的事件
+            function handleActivate(tab) {
+                alert(tab.title + ': activated事件触发。');
+            }
+            var index = 0;
+ 
+            //新增一个Tab
+            Ext.createWidget("button", {
+                text: "新增一个Tab",
+                renderTo: 'content2',
+                handler: function () {
+                    tabs1.add({                          //添加容器
+                        title: '新Tab ' + (++index),
+                        id: "newTab" + index,
+                        html: '选项卡文本部分 ' + (index) + '<br/><br/>',
+                        closable: true
+                    });
+                }
+            });
+ 
+            //插入一个Tab
+            Ext.createWidget("button", {
+                text: "在2号位置插入新Tab",
+                renderTo: 'content2',
+                handler: function () {
+                    tabs1.insert(2, {                   //添加容器到指定的位置,2为下标
+                        title: '新Tab ' + (++index),
+                        id: "newTab" + index,
+                        html: '选项卡文本部分 ' + (index) + '<br/><br/>',
+                        closable: true
+                    });
+                }
+            });
+            //删除一个Tab
+            Ext.createWidget("button", {
+                text: "删除2号位置的Tab",
+                renderTo: 'content2',
+                handler: function () {
+                    tabs1.remove(2);  //删除下标为2的
+                }
+            });
+            //删除id为“tab1”的Tab
+            Ext.createWidget("button", {
+                text: "删除id为“tab1”的Tab",
+                renderTo: 'content2',
+                handler: function () {
+                    tabs1.remove("tab1"); //删除id为tab1的
+                }
+            });
+            //删除id为“tab1”的Tab
+            Ext.createWidget("button", {
+                text: "设置第三个Tab为活动tab",
+                renderTo: 'content2',
+                handler: function () {
+                    tabs1.setActiveTab(2);
+                }
+            });
+        });
+      </script>
+   </head>
+   <body>
+      <div id="helloWorldPanel"></div>
+	     <div class="content" style="height: 150px">
+		    <div id="tabPanel">
+			        <div style="display: none">
+			            <div id="oneTab">
+			                <p>这个tab所展示的内容是读取至其他HTML标签</p>
+			            </div>
+			        </div>
+		    </div>
+		</div> 
+		<h1>操作选项卡</h1>
+		<div class="content" id="content2"></div>
+
+   </body>
+</html>
+<!--
+	作者：offline
+	时间：2019-03-13
+	描述：
+	https://www.w3cschool.cn/extjs/extjs_overview.html
+
+-->

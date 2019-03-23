@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="https://cdn.bootcss.com/extjs/6.0.0/classic/theme-classic/resources/theme-classic-all.css" rel="stylesheet">
+      <script type="text/javascript" src="js/ext-3.2/adapter/ext/ext-base.js" ></script>
+      <script src="https://cdn.bootcss.com/extjs/6.0.0/ext-all.js"></script>
+	</head>
+	<body>
+		 <p> Click the button for alert box </p>
+   			<div id = "msgBox" ></div>
+
+	</body>
+	 <script type="text/javascript">
+	 	Ext.onReady(function(){
+	 		Ext.create('Ext.Button',{
+	 			renderTo:'msgBox',
+	 			text:'确认提交',
+	 			listeners:{
+	 				click:function(){
+	 				Ext.MessageBox.show({
+	 					title:'Details'
+	 					,msg:'Please enter your details:'
+	 					,width:300
+	 					,buttons:Ext.MessageBox.YESNOCANCEL
+	 					,multiline:true
+	 					,fn:callbackFunction
+	 				});
+	 				function callbackFunction(){
+	 					Ext.msg.alert('status', 'Details entered succesfully');
+	 				}
+	 				}
+	 			}
+	 		});
+	 	});
+	 	
+	 	
+	 	
+	 	
+	 	//  提示框
+//	 	Ext.onReady(function(){
+//	 		Ext.create('Ext.Button',{
+//	 			renderTo:'msgBox',
+//	 			text:'确认提交',
+//	 			listeners:{
+//	 				click:function(){
+//	 					Ext.Msg.prompt('Name','确认提交吗',function(btn,text){
+//	 						if(btn=='ok'){
+//	 							Ext.Msg.alert('Hello','hello'+text);
+//	 						}
+//	 					});
+//	 				
+//	 				}
+//	 			}
+//	 		});
+//	 	});
+	 	
+	 	
+	 	//确认框
+//	 	Ext.onReady(function(){
+//	 		Ext.create('Ext.Button',{
+//	 			renderTo:'msgBox'
+//	 			,text:'确定提交'
+//	 			,listeners:{
+//	 				click:function(){
+//	 					Ext.MessageBox.buttonText.ok = '确认';
+//	 					Ext.MessageBox.buttonText.cancel = '关闭';
+//	 					Ext.MessageBox.buttonText.yes = '是';
+//						Ext.MessageBox.buttonText.no = '否'
+//	 					Ext.MessageBox.confirm('Confirm','你确定要提交吗',callbackFunction);
+//	 					function callbackFunction(btn){
+//	 						if(btn=='是'){
+//	 							Ext.Msg.alert ('Button Click', 'You clicked the Yes button');
+//	 						}else{
+//	 							Ext.Msg.alert ('Button Click', 'You clicked the NO button');
+//	 						}
+//	 					};
+//	 				}
+//	 			}
+//	 		});
+//	 	});
+//	 	
+	 	
+	 	
+	 	//基本警报框
+//    Ext.onReady(function() {
+//       Ext.create('Ext.Button', {
+//          renderTo: Ext.getElementById('msgBox'),
+//          text: 'Click Me',
+//          listeners: {
+//             click: function() {
+//                Ext.Msg.alert('Title', 'Basic message box in ExtJS');
+//             }
+//          }
+//       });
+//    });
+
+
+
+
+   </script>
+</html>
